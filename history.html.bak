@@ -10,9 +10,6 @@
     <p>History for this domain (limited to 5 results):</p>
     <p id="history"></p>
     <p><a href="#" id="clear">Clear history for this domain</a></p>
-    <p id=video_title>影片:</p>
-    <p><button id="button_download_video">click to download this video</button>
-    </p>
     <script src="history.js"></script>
   </body>
 
