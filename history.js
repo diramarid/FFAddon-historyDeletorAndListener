@@ -13,12 +13,20 @@ function no_history(hostname) {
 // the history.
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     var url_current_tab = tabs[0].url;
-    var title_current_tab = tabs[0].title;
+    var title_current_tab = "\""+tabs[0].title+"\"";
     console.log("in history.js#tabs.query,the url:" + url_current_tab + "\nThe title: "+ title_current_tab);
     //inject tab title to the popup of pageAction
     title_text_node = document.createTextNode(title_current_tab);
-    document.getElementById("video_title").appendChild(title_text_node);
+    /*
+    把影片名稱放到按鈕之外 document.getElementById("text_video_title").appendChild(title_text_node);
+    */
+    
+    /*
+    把影片名稱放到按鈕裡
+    */
+    document.getElementById("button_download_video_h2_title").appendChild(title_text_node);
     //end of inject tab title to the popup of pageAction
+    
   var list = document.getElementById('history');
   var hostname = get_hostname(tabs[0].url);
     //browse.history.search(
