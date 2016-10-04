@@ -12,18 +12,15 @@
     <p><a href="#" id="clear">Clear history for this domain</a></p>
     <div id="download_container" class="videoDownload">
 
-  <form
-    name="formName3"
-    onSubmit="return false;"
-  >
+ 
   <p>請選擇影片大小:</p>
-  <select name="selectName3" onchange="onChange(this, this.form)">
+  <select id="selectName3" onChange="videoResolutionDropDownListChanged(this)">
       <option res="1080pnumber" type="video">1080p</option>
       <option res="720pnumber" type="video">720p</option>
       <option res="128knumber" type="audio only">128k 只有聲音</option>
   </select>
-  <button id="button_download_video"><h2 id="button_download_video_h2_text">下載</h2></button>
-  </form>
+      <button id="button_download_video"><h2 id="button_download_video_h2_text">下載</h2></button>
+  
   <!--
   update button text after user select the resolution by adding
   下載: 1920X1080 影片名稱

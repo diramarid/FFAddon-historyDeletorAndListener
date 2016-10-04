@@ -27,10 +27,10 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     document.getElementById("button_download_video_h2_text").appendChild(title_text_node);
     //end of inject tab title to the popup of pageAction
 
-  var list = document.getElementById('history');
-  var hostname = get_hostname(tabs[0].url);
+    var list = document.getElementById('history');
+    var hostname = get_hostname(tabs[0].url);
     //browse.history.search(
-  chrome.history.search(
+    chrome.history.search(
     // Search for all history entries for the current windows domain.
     // Because this could be a lot of entries, lets limit it to 5.
     {text: hostname, maxResults: 5},
@@ -51,6 +51,8 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     }
   );
 });
+
+    
 
 function clearAll(e) {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -77,12 +79,31 @@ function clearAll(e) {
   e.preventDefault();
 }
 
-//this function handle buttow clicked event of button_download_video
-function handle_button_download_video(){
-  console.log("download video button clicked");
+    function videoResolutionDropDownListChanged(select){
+        //get the select value: the resolution from the select
+        console.log("drop down list changed");
+        console.log("select target is:" + select.target);
+        var myselect = document.getElementById("selectName3");
+        console.log(myselect.options[myselect.selectedIndex].getAttribute("res"));
+        /*
+        var resolution=select.options[select.selectedIndex].getAttribute("res");
+        //append the resolution text to the button text
+        resolution_text_node = document.createTextNode(resolution);
+        document.getElementById("button_download_video_h2_text").appendChild(title_text_node);
+        */
+        //var type=select.options[select.selectedIndex].getAttribute("type");
+    }
 
+//this function handle buttow clicked event of button_download_video
+function handle_button_download_video(e){
+  console.log(e.target.id + " is clicked");
+    
 }
 
+//add onchange listener to drop down list selectName3
+document.getElementById("selectName3").addEventListener("change",videoResolutionDropDownListChanged);
+
+/*
 function handle_button_show_other_video_sizes(){
   console.log("show more download options of the video button clicked");
   documnet.getElementById("")
@@ -90,6 +111,7 @@ function handle_button_show_other_video_sizes(){
 
 //set listener to the show more download options of the video button
 document.getElementById("button_show_other_video_sizes").addEventListener('click',handle_button_show_other_video_sizes);
+*/
 //remember to remove this listener if we remove its source element
 //set listener to the download video button
 document.getElementById("button_download_video").addEventListener('click',handle_button_download_video);
