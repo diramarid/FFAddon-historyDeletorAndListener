@@ -80,17 +80,46 @@ function clearAll(e) {
 }
 
     function videoResolutionDropDownListChanged(select){
+        //ToDo:if user select the entry that already shown in the list
+        //not calling on changed, onClick?
+        
         //get the select value: the resolution from the select
         console.log("drop down list changed");
-        console.log("select target is:" + select.target);
+        //output is SELECT
+        console.log("select target is:" + select.target.nodeName);
         var myselect = document.getElementById("selectName3");
-        console.log(myselect.options[myselect.selectedIndex].getAttribute("res"));
-        /*
-        var resolution=select.options[select.selectedIndex].getAttribute("res");
-        //append the resolution text to the button text
-        resolution_text_node = document.createTextNode(resolution);
-        document.getElementById("button_download_video_h2_text").appendChild(title_text_node);
-        */
+        //output is content of text node of selected entry
+        console.log("the text of the element "+myselect.options[myselect.selectedIndex].value);
+        //output is the content of attribute specified it the getAttribute("attributeName")
+        var resolution=myselect.options[myselect.selectedIndex].getAttribute("res");
+        console.log("the res attribute of the element" + resolution);
+        //create a h2 to store the selected video resolution
+        var h2_selected_res = document.getElementById("selected_video_res");
+        var res_text_node = document.createTextNode(resolution);
+        var resolution_text_node = document.createTextNode(resolution);
+        if(!h2_selected_res){
+            console.log("h2 not exists, create one");
+            var h2_created = document.createElement("h2");
+            var att_id = document.createAttribute("id");
+            att_id.value = "selected_video_res";
+            h2_created.setAttributeNode(att_id);
+            
+            h2_created.appendChild(res_text_node);
+            console.log("select resolution: " + h2_created.textContent);
+            //append the resolution text to the button text, this is not right cause we need to
+            //replace the existing h2's text instead of keep adding h2 to it
+            
+            document.getElementById("button_download_video_h2_text").appendChild(h2_created);
+        }else{
+            console.log("h2 exists, replace the text");
+            //h2 element whose id is selected_video_res exists
+            //replace its text
+            h2_selected_res.textContent = resolution;
+            console.log("select resolution: " + h2_selected_res.textContent);
+        }
+        
+        
+        
         //var type=select.options[select.selectedIndex].getAttribute("type");
     }
 
