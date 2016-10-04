@@ -102,7 +102,6 @@ function clearAll(e) {
             var att_id = document.createAttribute("id");
             att_id.value = "selected_video_res";
             h2_created.setAttributeNode(att_id);
-            
             h2_created.appendChild(resolution_text_node);
             console.log("select resolution: " + h2_created.textContent);
             //append the resolution text to the button text, this is not right cause we need to
